@@ -7,6 +7,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.math.BigDecimal;
 
 @Getter
 @Setter
@@ -19,19 +20,30 @@ public class Conta implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String descricao;
-    private Double valor;
+    private BigDecimal valorProduto;
+
+    @Transient
+    private Parcela parcela;
 
     @Enumerated
     @Column(name = "tipo_conta")
-    private OpcoesConta opcoesConta;
+    private TipoCompra tipoCompra;
 
-//    @ManyToOne
-//    @JoinColumn(name = "tipo_compra_id")
-//    private TipoCompra tipoCompra;
+    private BigDecimal total;
 
-//    @ManyToOne
-//    @JoinColumn(name = "parcela_id")
-//    private Parcela parcela;
+//    public Double subTotal() {
+//
+//    }
+//
+//    public Double getTotal(){
+//        double soma = 0.0;
+//        for(Conta x : itens){
+//            soma += x.getSubtotal();
+//        }
+//        return soma;
+//    }
+
 
 }

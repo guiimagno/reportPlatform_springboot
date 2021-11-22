@@ -22,4 +22,24 @@ public class ContaService {
         Optional<Conta> obj = repository.findById(id);
         return obj.get();
     }
+
+    public Conta inserir(Conta obj){
+        return repository.save(obj);
+    }
+
+    public void excluir(Long id){
+        repository.deleteById(id);
+    }
+
+    public Conta editar(Long id, Conta obj){
+        Conta conta = repository.getOne(id);
+        updateData(conta, obj);
+        return repository.save(conta);
+    }
+
+    private void updateData(Conta conta, Conta obj) {
+        conta.setDescricao(obj.getDescricao());
+        conta.setValorProduto(obj.getValorProduto());
+
+    }
 }
