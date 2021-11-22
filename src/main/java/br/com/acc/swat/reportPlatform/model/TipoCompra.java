@@ -1,4 +1,4 @@
-package br.com.acc.swat.reportplatform.model;
+package br.com.senac.ads4n.reciclaRecife.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -10,23 +10,19 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.io.Serializable;
-import java.util.Date;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class Parcela implements Serializable {
+public class TipoCompra implements Serializable {
     private static final long serialVersionUID = 1L;
 
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private int quantidade;
-    private Date dataInicio;
-    private Date dataFim;
-
+    private String descricao;
 
 }

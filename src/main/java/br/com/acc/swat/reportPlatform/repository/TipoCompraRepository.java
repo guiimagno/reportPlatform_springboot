@@ -1,6 +1,6 @@
-package br.com.acc.swat.reportplatform.repository;
+package br.com.senac.ads4n.reciclaRecife.repository;
 
-import br.com.acc.swat.reportplatform.model.TipoCompra;
+import br.com.senac.ads4n.reciclaRecife.model.TipoCompra;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

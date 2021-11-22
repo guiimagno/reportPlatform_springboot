@@ -1,4 +1,4 @@
-package br.com.acc.swat.reportplatform.model;
+package br.com.senac.ads4n.reciclaRecife.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

@@ -1,6 +1,6 @@
-package br.com.acc.swat.reportplatform.controllers;
+package br.com.senac.ads4n.reciclaRecife.controllers;
 
-import br.com.acc.swat.reportplatform.model.Conta;
+import br.com.senac.ads4n.reciclaRecife.model.Conta;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
