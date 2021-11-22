@@ -25,8 +25,11 @@ public class TestConfig implements CommandLineRunner {
         Conta c3 = new Conta(null, "netflix", 45.9, OpcoesConta.MENSAL);
         Conta c4 = new Conta(null, "OAB", 999.9, OpcoesConta.ANUAL);
 
+//        Pedido p1 = new Pedido();
+
+
 
         contaRepository.saveAll(Arrays.asList(c1, c2, c3, c4));
-
+//        pedidoRepository.saveAll(Arrays.asList(p1));
     }
 }
