@@ -1,4 +1,4 @@
-package br.com.senac.ads4n.reciclaRecife.controllers;
+package br.com.acc.swat.reportPlatform.controllers;
 
 public class ParcelaController {
 }
