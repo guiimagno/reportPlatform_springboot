@@ -8,6 +8,8 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.nio.MappedByteBuffer;
+import java.util.List;
 
 @Getter
 @Setter
@@ -20,17 +22,10 @@ public class Conta implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private String descricao;
-    private BigDecimal valorProduto;
 
-    @Transient
-    private Parcela parcela;
-
-    @Enumerated
-    @Column(name = "tipo_conta")
-    private TipoCompra tipoCompra;
-
+    @OneToMany(mappedBy = "conta")
+    private List<Parcela> parcela;
     private BigDecimal total;
 
 //    public Double subTotal() {

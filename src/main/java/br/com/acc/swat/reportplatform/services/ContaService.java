@@ -39,7 +39,5 @@ public class ContaService {
 
     private void updateData(Conta conta, Conta obj) {
         conta.setDescricao(obj.getDescricao());
-        conta.setValorProduto(obj.getValorProduto());
-
     }
 }
