@@ -8,7 +8,7 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.nio.MappedByteBuffer;
+import java.util.Date;
 import java.util.List;
 
 @Getter
@@ -24,8 +24,12 @@ public class Conta implements Serializable {
     private Long id;
     private String descricao;
 
+    @Enumerated
+    private TipoCompra tipoCompra;
+
     @OneToMany(mappedBy = "conta")
     private List<Parcela> parcela;
+    private Date data;
     private BigDecimal total;
 
 //    public Double subTotal() {

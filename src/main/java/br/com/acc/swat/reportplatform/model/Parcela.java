@@ -7,6 +7,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Date;
 
 @Getter
 @Setter
@@ -20,6 +21,8 @@ public class Parcela implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private int numParcela;
+
+    private Date data;
 
     @ManyToOne
     @JoinColumn(name = "conta_id")
