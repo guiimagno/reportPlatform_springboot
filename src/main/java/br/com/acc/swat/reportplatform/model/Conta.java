@@ -22,12 +22,16 @@ public class Conta implements Serializable {
     private String descricao;
     private Double valor;
 
-//    @ManyToOne
-    @JoinColumn(name = "tipo_compra_id")
-    private TipoCompra tipoCompra;
+    @Enumerated
+    @Column(name = "tipo_conta")
+    private OpcoesConta opcoesConta;
 
 //    @ManyToOne
-    @JoinColumn(name = "parcela_id")
-    private Parcela parcela;
+//    @JoinColumn(name = "tipo_compra_id")
+//    private TipoCompra tipoCompra;
+
+//    @ManyToOne
+//    @JoinColumn(name = "parcela_id")
+//    private Parcela parcela;
 
 }
