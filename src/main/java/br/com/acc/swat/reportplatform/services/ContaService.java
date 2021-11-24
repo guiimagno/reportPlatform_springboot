@@ -14,6 +14,7 @@ import java.util.Optional;
 @Service
 public class ContaService {
 
+
     @Autowired
     private ContaRepository repository;
 
@@ -29,20 +30,40 @@ public class ContaService {
     public Conta inserir(Conta obj) {
 
         double valorParcela = obj.getValorProduto() / obj.getQtdParcelas();
-        if (obj.getQtdParcelas() > 0) {
 
-            List<Parcela> list = new ArrayList<>();
-            for (int i = 0; i < obj.getQtdParcelas(); i++) {
-                Parcela p = new Parcela();
-                p.setDataParcela(LocalDate.now().plusMonths(Long.parseLong(String.valueOf(i))));
-                p.setNumParcela(i);
+        if(obj.getTipoCompra().getCodigo() == 1) {
 
-                p.setValorParcela(valorParcela);
+            if (obj.getQtdParcelas() > 0) {
 
-                p.setContas(obj);
-                list.add(p);
+                List<Parcela> list = new ArrayList<>();
+
+                for (int i = 1; i <= obj.getQtdParcelas(); i++) {
+                    Parcela p = new Parcela();
+                    p.setDataParcela(LocalDate.now().plusMonths(Long.parseLong(String.valueOf(i))));
+                    p.setNumParcela(i);
+                    p.setValorParcela(valorParcela);
+                    p.setContas(obj);
+                    list.add(p);
+                }
+
+                obj.setParcela(list);
             }
-            obj.setParcela(list);
+
+
+        } else if(obj.getTipoCompra().getCodigo() == 2){
+
+            List<Parcela> list1 = new ArrayList<>();
+
+            for (int i = 1; i <= obj.getQtdParcelas(); i++) {
+                Parcela p = new Parcela();
+                p.setDataParcela(LocalDate.now().plusYears(Long.parseLong(String.valueOf(i))));
+                p.setNumParcela(i);
+                p.setValorParcela(valorParcela);
+                p.setContas(obj);
+                list1.add(p);
+
+            }
+            obj.setParcela(list1);
         }
 
         obj.setData(LocalDate.now());
@@ -52,6 +73,9 @@ public class ContaService {
 
 
     public void excluir(Long id) {
+
+
+
         repository.deleteById(id);
     }
 

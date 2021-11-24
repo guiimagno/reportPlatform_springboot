@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.List;
@@ -24,9 +25,11 @@ public class Conta implements Serializable {
     @Column(name = "conta_id")
     private Long id;
 
+    @NotBlank
     @Column(name = "descricao")
     private String descricao;
 
+    @NotBlank
     @Column(name = "valor_produto")
     private Double valorProduto;
 
