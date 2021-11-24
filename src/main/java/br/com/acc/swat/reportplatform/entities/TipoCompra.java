@@ -1,16 +1,18 @@
-package br.com.acc.swat.reportplatform.model;
+package br.com.acc.swat.reportplatform.entities;
 
 public enum TipoCompra {
 
-    UNICA(1),
-    MENSAL(2),
-    ANUAL(3),
-    SEM_VENCIMENTO(4);
+    UNICA(0, "UNICA"),
+    MENSAL(1, "MENSAL"),
+    ANUAL(2, "ANUAL"),
+    SEM_VENCIMENTO(3, "SEM VENCIMENTO");
 
     private int codigo;
+    private String descricao;
 
-    TipoCompra(int codigo) {
+    TipoCompra(int codigo, String descricao) {
         this.codigo = codigo;
+        this.descricao = descricao;
     }
 
     public int getCodigo() {

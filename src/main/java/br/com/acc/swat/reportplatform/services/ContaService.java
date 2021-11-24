@@ -1,10 +1,13 @@
 package br.com.acc.swat.reportplatform.services;
 
-import br.com.acc.swat.reportplatform.model.Conta;
-import br.com.acc.swat.reportplatform.repository.ContaRepository;
+import br.com.acc.swat.reportplatform.entities.Conta;
+import br.com.acc.swat.reportplatform.entities.Parcela;
+import br.com.acc.swat.reportplatform.repositories.ContaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -14,24 +17,42 @@ public class ContaService {
     @Autowired
     private ContaRepository repository;
 
-    public List<Conta> findAll(){
+    public List<Conta> findAll() {
         return repository.findAll();
     }
 
-    public Conta findById(Long id){
+    public Conta findById(Long id) {
         Optional<Conta> obj = repository.findById(id);
         return obj.get();
     }
 
-    public Conta inserir(Conta obj){
+    public Conta inserir(Conta obj) {
+
+        if (obj.getQtdParcelas() > 0) {
+            List<Parcela> parcelaList = new ArrayList<>();
+            Double valorParcela = obj.getValorProduto() / obj.getQtdParcelas();
+
+            for (int i = 0; i < obj.getQtdParcelas(); i++) {
+                Parcela p = new Parcela();
+                p.setDataParcela(LocalDate.now().plusMonths(Long.parseLong(String.valueOf(i))));
+                p.setNumParcela(i);
+                p.setContas(obj);
+                p.setValorParcela(valorParcela);
+                parcelaList.add(p);
+            }
+
+            obj.setParcela(parcelaList);
+        }
+
+        obj.setData(LocalDate.now());
         return repository.save(obj);
     }
 
-    public void excluir(Long id){
+    public void excluir(Long id) {
         repository.deleteById(id);
     }
 
-    public Conta editar(Long id, Conta obj){
+    public Conta editar(Long id, Conta obj) {
         Conta conta = repository.getOne(id);
         updateData(conta, obj);
         return repository.save(conta);
