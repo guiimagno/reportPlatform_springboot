@@ -1,6 +1,9 @@
 package br.com.acc.swat.reportplatform.entities;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -31,7 +34,6 @@ public class Parcela implements Serializable {
     @ManyToOne
     @JoinColumn(name = "conta_id")
     private Conta contas;
-
 }
 
 
