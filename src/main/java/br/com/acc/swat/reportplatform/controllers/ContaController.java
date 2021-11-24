@@ -15,8 +15,6 @@ public class ContaController {
     @Autowired
     private ContaService service;
 
-
-
     @GetMapping
     public ResponseEntity<List<Conta>> findAll() {
         List<Conta> list = service.findAll();
