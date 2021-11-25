@@ -35,19 +35,3 @@ public class Parcela implements Serializable {
     @JoinColumn(name = "conta_id")
     private Conta contas;
 }
-
-
-//    private List<String> datas = new ArrayList<>();
-//
-//    private SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyy");
-//
-//    public void validacaoTempo() {
-//        Calendar c = Calendar.getInstance();
-//        c.setTime(dataParcela);
-//        for (int i = 1; i < numParcela; i++) {
-//            c.add(Calendar.MONTH, i);
-//            Date data = c.getTime();
-//            String dataFotmatada = sdf.format(data);
-//            datas.add(dataFotmatada);
-//        }
-//    }
