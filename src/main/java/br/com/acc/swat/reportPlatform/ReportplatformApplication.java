@@ -1,4 +1,4 @@
-package br.com.acc.swat.reportplatform;
+package br.com.acc.swat.reportPlatform;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
