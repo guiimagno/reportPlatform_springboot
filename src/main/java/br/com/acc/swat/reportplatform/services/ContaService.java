@@ -10,6 +10,7 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityNotFoundException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -81,16 +82,22 @@ public class ContaService {
             repository.deleteById(id);
         } catch (EmptyResultDataAccessException e) {
             throw new ResourceNotFoundException(id);
-        } catch (DataIntegrityViolationException e){
+        } catch (DataIntegrityViolationException e) {
             throw new DataBaseException(e.getMessage());
         }
     }
 
 
     public Conta editar(Long id, Conta obj) {
-        Conta conta = repository.getOne(id);
-        updateData(conta, obj);
-        return repository.save(conta);
+
+        try {
+            Conta conta = repository.getOne(id);
+            updateData(conta, obj);
+            return repository.save(conta);
+
+        } catch (EntityNotFoundException e) {
+            throw new ResourceNotFoundException(id);
+        }
     }
 
     private void updateData(Conta conta, Conta obj) {
