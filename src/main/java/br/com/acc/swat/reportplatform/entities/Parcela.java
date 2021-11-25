@@ -8,8 +8,6 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
 
 @Data
 @Builder
@@ -36,21 +34,4 @@ public class Parcela implements Serializable {
     @ManyToOne
     @JoinColumn(name = "conta_id")
     private Conta contas;
-    private List<String> datas = new ArrayList<>();
 }
-
-
-
-//
-//    private SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyy");
-//
-//    public void validacaoTempo() {
-//        Calendar c = Calendar.getInstance();
-//        c.setTime(dataParcela);
-//        for (int i = 1; i < numParcela; i++) {
-//            c.add(Calendar.MONTH, i);
-//            Date data = c.getTime();
-//            String dataFotmatada = sdf.format(data);
-//            datas.add(dataFotmatada);
-//        }
-//    }

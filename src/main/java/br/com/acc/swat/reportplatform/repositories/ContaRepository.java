@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ContaRepository extends PagingAndSortingRepository<Conta, Long> {
 
-    Page<Conta> findPageable(Pageable pageable);
+//    Page<Conta> findPageable(Pageable pageable);
 
     Conta getOne(Long id);
 }

@@ -4,8 +4,6 @@ import br.com.acc.swat.reportplatform.entities.Conta;
 import br.com.acc.swat.reportplatform.entities.Parcela;
 import br.com.acc.swat.reportplatform.repositories.ContaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -19,11 +17,11 @@ public class ContaService {
     @Autowired
     private ContaRepository repository;
 
-    public Page<Conta> findPageable(Pageable pageable) {
-        return repository.findAll(pageable);
-    }
+//    public Page<Conta> findPageable(Pageable pageable) {
+//        return repository.findAll(pageable);
+//    }
 
-    public List<Conta> findAll() {
+    public Iterable<Conta> findAll() {
         return repository.findAll();
     }
 
@@ -86,7 +84,9 @@ public class ContaService {
     }
 
     private void updateData(Conta conta, Conta obj) {
+
         List<Parcela> list2 = new ArrayList<>();
+
         conta.setDescricao(obj.getDescricao());
         conta.setValorProduto(obj.getValorProduto());
         conta.setTipoCompra(obj.getTipoCompra());
@@ -95,6 +95,7 @@ public class ContaService {
         p.setNumParcela(p.getNumParcela());
         p.setContas(obj);
         list2.add(p);
+        obj.setParcela(list2);
     }
 
 }
