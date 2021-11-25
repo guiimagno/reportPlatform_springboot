@@ -1,4 +1,4 @@
-package br.com.acc.swat.reportplatform.controllers;
+package br.com.acc.swat.reportplatform.resources;
 
 import br.com.acc.swat.reportplatform.entities.Conta;
 import br.com.acc.swat.reportplatform.services.ContaService;

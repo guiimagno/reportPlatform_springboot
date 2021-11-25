@@ -3,6 +3,7 @@ package br.com.acc.swat.reportplatform.services;
 import br.com.acc.swat.reportplatform.entities.Conta;
 import br.com.acc.swat.reportplatform.entities.Parcela;
 import br.com.acc.swat.reportplatform.repositories.ContaRepository;
+import br.com.acc.swat.reportplatform.services.exceptions.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -27,7 +28,7 @@ public class ContaService {
 
     public Conta findById(Long id) {
         Optional<Conta> obj = repository.findById(id);
-        return obj.get();
+        return obj.orElseThrow(() -> new ResourceNotFoundException(id));
     }
 
     public Conta inserir(Conta obj) {
