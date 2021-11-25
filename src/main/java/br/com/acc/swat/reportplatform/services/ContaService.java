@@ -22,6 +22,7 @@ public class ContaService {
     @Autowired
     private ContaRepository repository;
 
+    // LISTAR TODOS
     public List<Conta> findAll() {
         return (List<Conta>) repository.findAll();
     }
@@ -31,6 +32,7 @@ public class ContaService {
         return obj.orElseThrow(() -> new ResourceNotFoundException(id));
     }
 
+    // CADASTRAR CONTA E PARCELA - MENSAL/ANUAL
     public Conta inserir(Conta obj) {
 
         double valorParcela = obj.getValorProduto() / obj.getQtdParcelas();
@@ -51,7 +53,6 @@ public class ContaService {
                 obj.setParcela(list);
             }
 
-
         } else if (obj.getTipoCompra().getCodigo() == 2) {
 
             List<Parcela> list1 = new ArrayList<>();
@@ -63,8 +64,8 @@ public class ContaService {
                 p.setValorParcela(valorParcela);
                 p.setContas(obj);
                 list1.add(p);
-
             }
+
             obj.setParcela(list1);
         }
 
@@ -72,7 +73,7 @@ public class ContaService {
         return repository.save(obj);
     }
 
-
+    // DELETAR CONTA POR ID
     public void excluir(Long id) {
         try {
             repository.deleteById(id);
@@ -83,7 +84,7 @@ public class ContaService {
         }
     }
 
-
+    // ATUALIZAR CONTA
     public Conta editar(Long id, Conta obj) {
 
         try {
@@ -99,11 +100,11 @@ public class ContaService {
     private void updateData(Conta conta, Conta obj) {
 
         List<Parcela> list2 = new ArrayList<>();
-
         conta.setDescricao(obj.getDescricao());
         conta.setValorProduto(obj.getValorProduto());
         conta.setTipoCompra(obj.getTipoCompra());
         conta.setQtdParcelas(obj.getQtdParcelas());
+
         Parcela p = new Parcela();
         p.setNumParcela(p.getNumParcela());
         p.setContas(obj);
