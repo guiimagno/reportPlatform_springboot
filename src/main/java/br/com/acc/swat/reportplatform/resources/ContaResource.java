@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping(value = "/conta")
 public class ContaResource {
@@ -15,7 +17,7 @@ public class ContaResource {
 
     @GetMapping
     public ResponseEntity<Iterable<Conta>> findList() {
-        Iterable<Conta> list = service.findAll();
+        List<Conta> list = service.findAll();
         return ResponseEntity.ok().body(list);
     }
 
@@ -24,11 +26,6 @@ public class ContaResource {
         Conta obj = service.findById(id);
         return ResponseEntity.ok().body(obj);
     }
-
-//    @GetMapping
-//    public ResponseEntity<Page<Conta>> findPageable(Pageable p) {
-//        return ResponseEntity.ok(service.findAll(p));
-//    }
 
     @PostMapping
     public ResponseEntity<Conta> inserir(@RequestBody Conta obj) {

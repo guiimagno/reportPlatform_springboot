@@ -22,12 +22,8 @@ public class ContaService {
     @Autowired
     private ContaRepository repository;
 
-//    public Page<Conta> findPageable(Pageable pageable) {
-//        return repository.findAll(pageable);
-//    }
-
-    public Iterable<Conta> findAll() {
-        return repository.findAll();
+    public List<Conta> findAll() {
+        return (List<Conta>) repository.findAll();
     }
 
     public Conta findById(Long id) {
@@ -114,5 +110,4 @@ public class ContaService {
         list2.add(p);
         obj.setParcela(list2);
     }
-
 }
