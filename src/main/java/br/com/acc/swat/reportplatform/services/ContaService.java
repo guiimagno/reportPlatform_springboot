@@ -3,8 +3,11 @@ package br.com.acc.swat.reportplatform.services;
 import br.com.acc.swat.reportplatform.entities.Conta;
 import br.com.acc.swat.reportplatform.entities.Parcela;
 import br.com.acc.swat.reportplatform.repositories.ContaRepository;
+import br.com.acc.swat.reportplatform.services.exceptions.DataBaseException;
 import br.com.acc.swat.reportplatform.services.exceptions.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -74,7 +77,13 @@ public class ContaService {
 
 
     public void excluir(Long id) {
-        repository.deleteById(id);
+        try {
+            repository.deleteById(id);
+        } catch (EmptyResultDataAccessException e) {
+            throw new ResourceNotFoundException(id);
+        } catch (DataIntegrityViolationException e){
+            throw new DataBaseException(e.getMessage());
+        }
     }
 
 
