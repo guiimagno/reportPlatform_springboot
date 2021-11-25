@@ -1,12 +1,10 @@
-package br.com.acc.swat.reportplatform.resources;
+package br.com.acc.swat.reportplatform.controllers;
 
 import br.com.acc.swat.reportplatform.entities.Conta;
 import br.com.acc.swat.reportplatform.services.ContaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping(value = "/conta")
@@ -17,7 +15,7 @@ public class ContaResource {
 
     @GetMapping
     public ResponseEntity<Iterable<Conta>> findList() {
-        List<Conta> list = service.findAll();
+        Iterable<Conta> list = service.findAll();
         return ResponseEntity.ok().body(list);
     }
 
@@ -26,6 +24,11 @@ public class ContaResource {
         Conta obj = service.findById(id);
         return ResponseEntity.ok().body(obj);
     }
+
+//    @GetMapping
+//    public ResponseEntity<Page<Conta>> findPageable(Pageable p) {
+//        return ResponseEntity.ok(service.findAll(p));
+//    }
 
     @PostMapping
     public ResponseEntity<Conta> inserir(@RequestBody Conta obj) {
