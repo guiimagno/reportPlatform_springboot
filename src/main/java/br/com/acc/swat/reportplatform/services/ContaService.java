@@ -4,6 +4,8 @@ import br.com.acc.swat.reportplatform.entities.Conta;
 import br.com.acc.swat.reportplatform.entities.Parcela;
 import br.com.acc.swat.reportplatform.repositories.ContaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -14,9 +16,12 @@ import java.util.Optional;
 @Service
 public class ContaService {
 
-
     @Autowired
     private ContaRepository repository;
+
+    public Page<Conta> findPageable(Pageable pageable) {
+        return repository.findAll(pageable);
+    }
 
     public List<Conta> findAll() {
         return repository.findAll();
@@ -31,10 +36,8 @@ public class ContaService {
 
         double valorParcela = obj.getValorProduto() / obj.getQtdParcelas();
 
-        if(obj.getTipoCompra().getCodigo() == 1) {
-
+        if (obj.getTipoCompra().getCodigo() == 1) {
             if (obj.getQtdParcelas() > 0) {
-
                 List<Parcela> list = new ArrayList<>();
 
                 for (int i = 1; i <= obj.getQtdParcelas(); i++) {
@@ -50,7 +53,7 @@ public class ContaService {
             }
 
 
-        } else if(obj.getTipoCompra().getCodigo() == 2){
+        } else if (obj.getTipoCompra().getCodigo() == 2) {
 
             List<Parcela> list1 = new ArrayList<>();
 
@@ -71,11 +74,7 @@ public class ContaService {
     }
 
 
-
     public void excluir(Long id) {
-
-
-
         repository.deleteById(id);
     }
 
@@ -87,6 +86,15 @@ public class ContaService {
     }
 
     private void updateData(Conta conta, Conta obj) {
+        List<Parcela> list2 = new ArrayList<>();
         conta.setDescricao(obj.getDescricao());
+        conta.setValorProduto(obj.getValorProduto());
+        conta.setTipoCompra(obj.getTipoCompra());
+        conta.setQtdParcelas(obj.getQtdParcelas());
+        Parcela p = new Parcela();
+        p.setNumParcela(p.getNumParcela());
+        p.setContas(obj);
+        list2.add(p);
     }
+
 }
